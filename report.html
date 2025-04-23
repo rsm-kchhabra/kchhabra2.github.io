@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.5">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>report</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="report_files/libs/clipboard/clipboard.min.js"></script>
+<script src="report_files/libs/quarto-html/quarto.js"></script>
+<script src="report_files/libs/quarto-html/popper.min.js"></script>
+<script src="report_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="report_files/libs/quarto-html/anchor.min.js"></script>
+<link href="report_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="report_files/libs/quarto-html/quarto-syntax-highlighting-ff4371ef257df69894857e99c6ad0d06.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="report_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="report_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="report_files/libs/bootstrap/bootstrap-7a37bedb4c43c38e3051e56170f8cb1c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+
+
+
+<h1 id="report-statistical-replication-and-interpretation-of-karlan-list-2007">
+<strong>Report: Statistical Replication and Interpretation of Karlan &amp; List (2007)</strong>
+</h1>
+<h2 id="introduction" class="anchored">
+<strong>Introduction</strong>
+</h2>
+<p>
+This report provides an in-depth replication and interpretation of the statistical methodologies and findings from the seminal field experiment conducted by Karlan and List (2007), titled “Does Price Matter in Charitable Giving?” The paper examines how matching grant offers influence both the likelihood of charitable donations and the amount given. Our analysis uses the original experimental data to explore the efficacy of various match ratios and donor responses. Through a combination of econometric analysis and simulation, we replicate the key statistical insights and reflect on their implications for fundraising and behavioral economics.
+</p>
+<h2 id="balance-test" class="anchored">
+<strong>1. Balance Test</strong>
+</h2>
+<p>
+Before assessing treatment effects, we evaluate the quality of the randomization by comparing observable characteristics across the treatment and control groups. One key pre-treatment variable analyzed is mrm2, which captures the months since a donor last contributed to the organization.
+</p>
+<p>
+<strong>Methods:</strong>
+</p>
+<ul>
+<li>
+<p>
+We performed a two-sided t-test comparing the means of mrm2 for treatment versus control.
+</p>
+</li>
+<li>
+<p>
+Additionally, we conducted a simple linear regression: mrm2 ~ treatment.
+</p>
+</li>
+</ul>
+<p>
+<img src="media/image4.png" style="width:5.52962in;height:3.27604in">
+</p>
+<p>
+<strong>Findings:</strong>
+</p>
+<ul>
+<li>
+<p>
+The mean difference in mrm2 was small and statistically insignificant.
+</p>
+</li>
+<li>
+<p>
+The OLS regression yielded a near-zero coefficient on the treatment indicator.
+</p>
+</li>
+</ul>
+<p>
+<strong>Interpretation:</strong> This confirms that randomization achieved balance across groups on this important dimension. The lack of statistically significant differences implies that any subsequent differences in outcomes can be attributed to the treatment rather than pre-existing disparities. This is consistent with Table 1 of the original study, which serves as a critical validity check.
+</p>
+<h2 id="effect-of-matched-donations-on-donation-probability" class="anchored">
+<strong>2. Effect of Matched Donations on Donation Probability</strong>
+</h2>
+<h3 id="visual-analysis" class="anchored">
+<strong>Visual Analysis:</strong>
+</h3>
+<p>
+A bar plot comparing the proportion of individuals who donated in the treatment group versus the control group reveals a clear visual increase in the likelihood of giving when a match offer is present.
+</p>
+<p>
+<img src="media/image3.png" style="width:5.18229in;height:3.67831in">
+</p>
+<p>
+<strong>Graph Interpretation:</strong>
+</p>
+<ul>
+<li>
+<p>
+The control group has a lower donation rate, confirming that individuals not presented with a matching offer are less inclined to give.
+</p>
+</li>
+<li>
+<p>
+The treatment group displays a notable uplift, providing visual affirmation of the intervention’s impact.
+</p>
+</li>
+</ul>
+<h3 id="statistical-analysis" class="anchored">
+<strong>Statistical Analysis:</strong>
+</h3>
+<p>
+To formally test the effect, we conducted:
+</p>
+<ul>
+<li>
+<p>
+A two-sample t-test of donation rates (“gave” variable).
+</p>
+</li>
+<li>
+<p>
+A linear probability model (OLS regression): gave ~ treatment.
+</p>
+</li>
+</ul>
+<p>
+<strong>Findings:</strong>
+</p>
+<ul>
+<li>
+<p>
+The t-test yields a statistically significant result, with treatment increasing the probability of giving.
+</p>
+</li>
+<li>
+<p>
+The regression coefficient is positive and significant, quantitatively supporting the same conclusion.<br> <img src="media/image6.png" style="width:6.26772in;height:4.36111in">
+</p>
+</li>
+</ul>
+<p>
+<strong>Interpretation:</strong> These findings underscore the behavioral power of framing. Offering a matching grant, even without specifying the match size, effectively boosts engagement. Donors likely interpret matching as a signal of collective efficacy or organizational credibility, prompting greater participation.
+</p>
+<h3 id="probit-model" class="anchored">
+<strong>Probit Model:</strong>
+</h3>
+<p>
+We also estimate a probit regression of gave ~ treatment, mirroring the approach in Table 3, Column 1.
+</p>
+<p>
+<strong>Interpretation:</strong> The probit results confirm that the marginal effect of treatment remains positive and significant even under a non-linear specification. This reinforces the robustness of the main effect and strengthens our confidence in its generalizability.
+</p>
+<p>
+<img src="media/image2.png" style="width:6.26772in;height:2.63889in">
+</p>
+<h2 id="effect-of-match-ratio-size" class="anchored">
+<strong>3. Effect of Match Ratio Size</strong>
+</h2>
+<h3 id="pairwise-t-tests" class="anchored">
+<strong>Pairwise T-tests:</strong>
+</h3>
+<p>
+We test whether larger match ratios lead to increased giving by comparing:
+</p>
+<ul>
+<li>
+<p>
+1:1 vs 2:1
+</p>
+</li>
+<li>
+<p>
+2:1 vs 3:1
+</p>
+</li>
+</ul>
+<blockquote class="blockquote">
+<p>
+<img src="media/image7.png" style="width:6.19792in;height:2.59104in">
+</p>
+</blockquote>
+<p>
+<strong>Findings:</strong>
+</p>
+<ul>
+<li>
+<p>
+No statistically significant differences in response rates are detected between these match conditions.
+</p>
+</li>
+</ul>
+<h3 id="regression-analysis" class="anchored">
+<strong>Regression Analysis:</strong>
+</h3>
+<p>
+We estimate a regression: gave ~ C(ratio) to examine if match ratios have a differential effect on giving.
+</p>
+<p>
+<strong>Findings:</strong>
+</p>
+<ul>
+<li>
+<p>
+The coefficients on 2:1 and 3:1 matches are not statistically different from the baseline 1:1 match.
+</p>
+</li>
+</ul>
+<p>
+<strong>Interpretation:</strong> This suggests that the marginal return on increasing the match ratio is effectively zero. The presence of a match appears sufficient to generate psychological salience. Beyond that, larger incentives may not enhance perceived value or urgency. This is a key behavioral insight that challenges traditional economic models of price sensitivity.
+</p>
+<h3 id="manual-difference-calculations" class="anchored">
+<strong>Manual Difference Calculations:</strong>
+</h3>
+<p>
+Using group means, we directly computed the differences in donation rates:
+</p>
+<ul>
+<li>
+<p>
+2:1 vs 1:1: negligible
+</p>
+</li>
+<li>
+<p>
+3:1 vs 2:1: negligible
+</p>
+</li>
+</ul>
+<p>
+<strong>Interpretation:</strong> These values corroborate our regression findings. They indicate that once the concept of matching is introduced, the specific multiple does not meaningfully alter donor behavior. This implies diminishing psychological returns to increasing match ratios.
+</p>
+<h2 id="donation-amounts" class="anchored">
+<strong>4. Donation Amounts</strong>
+</h2>
+<h3 id="full-sample-regression" class="anchored">
+<strong>Full Sample Regression:</strong>
+</h3>
+<p>
+We regressed total donation amount on treatment status for the entire sample.
+</p>
+<p>
+<strong>Findings:</strong>
+</p>
+<ul>
+<li>
+<p>
+The average donation is slightly higher in the treatment group, though this difference is modest and varies in statistical significance.
+</p>
+</li>
+</ul>
+<blockquote class="blockquote">
+<p>
+<img src="media/image8.png" style="width:6.26772in;height:6.83333in">
+</p>
+</blockquote>
+<h3 id="conditional-on-donation" class="anchored">
+<strong>Conditional on Donation:</strong>
+</h3>
+<p>
+Restricting the sample to individuals who made a donation (gave == 1), we re-estimated the regression.
+</p>
+<p>
+<strong>Findings:</strong>
+</p>
+<ul>
+<li>
+<p>
+No significant difference in average donation size was observed.
+</p>
+</li>
+</ul>
+<p>
+<strong>Interpretation:</strong> The treatment’s effectiveness lies primarily in increasing the participation rate rather than altering the generosity of existing donors. This insight is crucial for organizations aiming to expand their donor base.
+</p>
+<h3 id="histograms" class="anchored">
+<strong>Histograms:</strong>
+</h3>
+<p>
+We plotted donation amounts for donors in treatment and control groups.
+</p>
+<p>
+<img src="media/image1.png" style="width:6.26772in;height:2.51389in">
+</p>
+<p>
+<strong>Graph Interpretation:</strong>
+</p>
+<ul>
+<li>
+<p>
+Both distributions are right-skewed, reflecting a typical long-tail pattern in giving.
+</p>
+</li>
+<li>
+<p>
+The sample means, indicated by vertical lines, are nearly identical.
+</p>
+</li>
+</ul>
+<p>
+<strong>Interpretation:</strong> These plots visually confirm that conditional giving behavior remains stable across groups. Behavioral change occurs primarily at the extensive margin (whether to give) rather than the intensive margin (how much to give).
+</p>
+<h2 id="section" class="anchored">
+</h2>
+<h2 id="section-1" class="anchored">
+</h2>
+<h2 id="section-2" class="anchored">
+</h2>
+<h2 id="section-3" class="anchored">
+</h2>
+<h2 id="section-4" class="anchored">
+</h2>
+<h2 id="simulation-analysis" class="anchored">
+<strong>5. Simulation Analysis</strong>
+</h2>
+<h3 id="law-of-large-numbers-lln" class="anchored">
+<strong>Law of Large Numbers (LLN):</strong>
+</h3>
+<p>
+We simulated 10,000 draws from control (p = 0.018) and treatment (p = 0.022) distributions and plotted the cumulative mean difference.
+</p>
+<p>
+<img src="media/image5.png" style="width:6.26772in;height:4.59722in">
+</p>
+<p>
+<strong>Graph Interpretation:</strong>
+</p>
+<ul>
+<li>
+<p>
+The cumulative average converges to the true population difference of 0.004.
+</p>
+</li>
+<li>
+<p>
+This convergence illustrates the principle that sample means become reliable with sufficient data.
+</p>
+</li>
+</ul>
+<p>
+<strong>Interpretation:</strong> This simulation reinforces the trustworthiness of experimental outcomes derived from large samples. The LLN ensures that our results are not driven by chance.
+</p>
+<h3 id="section-5" class="anchored">
+</h3>
+<h3 id="section-6" class="anchored">
+</h3>
+<h3 id="central-limit-theorem-clt" class="anchored">
+<strong>Central Limit Theorem (CLT):</strong>
+</h3>
+<p>
+We simulated distributions of sample mean differences at sizes 50, 200, 500, and 1000.
+</p>
+<p>
+<img src="media/image9.png" style="width:6.26772in;height:5.02778in">
+</p>
+<p>
+<strong>Graph Interpretation:</strong>
+</p>
+<ul>
+<li>
+<p>
+As the sample size increases, the sampling distribution becomes more concentrated and bell-shaped.
+</p>
+</li>
+<li>
+<p>
+The distributions center around the expected value (0.004), and their variance decreases.
+</p>
+</li>
+</ul>
+<p>
+<strong>Interpretation:</strong> This exercise demonstrates the CLT in action, underscoring the role of sample size in determining statistical power and inference reliability. It justifies the paper’s use of large-scale field experimentation.
+</p>
+<h2 id="section-7" class="anchored">
+</h2>
+<h2 id="conclusion" class="anchored">
+<strong>Conclusion</strong>
+</h2>
+<p>
+Our replication confirms the main findings of Karlan and List (2007):
+</p>
+<ul>
+<li>
+<p>
+The presence of a matching grant significantly increases donation rates.
+</p>
+</li>
+<li>
+<p>
+The size of the match offer has little to no additional effect.
+</p>
+</li>
+<li>
+<p>
+The treatment primarily affects the extensive margin (whether to donate), not the intensive margin (how much to donate).
+</p>
+</li>
+</ul>
+<p>
+These results have meaningful implications for fundraising strategies. From a behavioral economics perspective, matching offers serve more as psychological signals than economic incentives. Fundraisers may benefit more from framing and visibility of matching rather than adjusting match magnitudes.
+</p>
+<p>
+The robustness of these findings, confirmed through both classical inference and simulation, highlights the value of well-designed field experiments in revealing the underlying drivers of economic behavior.
+</p>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

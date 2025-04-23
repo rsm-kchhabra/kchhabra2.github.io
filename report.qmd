@@ -1,0 +1,242 @@
+<h1
+id="report-statistical-replication-and-interpretation-of-karlan-list-2007"><strong>Report:
+Statistical Replication and Interpretation of Karlan &amp; List
+(2007)</strong></h1>
+<h2 id="introduction"><strong>Introduction</strong></h2>
+<p>This report provides an in-depth replication and interpretation of
+the statistical methodologies and findings from the seminal field
+experiment conducted by Karlan and List (2007), titled "Does Price
+Matter in Charitable Giving?" The paper examines how matching grant
+offers influence both the likelihood of charitable donations and the
+amount given. Our analysis uses the original experimental data to
+explore the efficacy of various match ratios and donor responses.
+Through a combination of econometric analysis and simulation, we
+replicate the key statistical insights and reflect on their implications
+for fundraising and behavioral economics.</p>
+<h2 id="balance-test"><strong>1. Balance Test</strong></h2>
+<p>Before assessing treatment effects, we evaluate the quality of the
+randomization by comparing observable characteristics across the
+treatment and control groups. One key pre-treatment variable analyzed is
+mrm2, which captures the months since a donor last contributed to the
+organization.</p>
+<p><strong>Methods:</strong></p>
+<ul>
+<li><p>We performed a two-sided t-test comparing the means of mrm2 for
+treatment versus control.</p></li>
+<li><p>Additionally, we conducted a simple linear regression: mrm2 ~
+treatment.</p></li>
+</ul>
+<p><img src="media/image4.png"
+style="width:5.52962in;height:3.27604in" /></p>
+<p><strong>Findings:</strong></p>
+<ul>
+<li><p>The mean difference in mrm2 was small and statistically
+insignificant.</p></li>
+<li><p>The OLS regression yielded a near-zero coefficient on the
+treatment indicator.</p></li>
+</ul>
+<p><strong>Interpretation:</strong> This confirms that randomization
+achieved balance across groups on this important dimension. The lack of
+statistically significant differences implies that any subsequent
+differences in outcomes can be attributed to the treatment rather than
+pre-existing disparities. This is consistent with Table 1 of the
+original study, which serves as a critical validity check.</p>
+<h2 id="effect-of-matched-donations-on-donation-probability"><strong>2.
+Effect of Matched Donations on Donation Probability</strong></h2>
+<h3 id="visual-analysis"><strong>Visual Analysis:</strong></h3>
+<p>A bar plot comparing the proportion of individuals who donated in the
+treatment group versus the control group reveals a clear visual increase
+in the likelihood of giving when a match offer is present.</p>
+<p><img src="media/image3.png"
+style="width:5.18229in;height:3.67831in" /></p>
+<p><strong>Graph Interpretation:</strong></p>
+<ul>
+<li><p>The control group has a lower donation rate, confirming that
+individuals not presented with a matching offer are less inclined to
+give.</p></li>
+<li><p>The treatment group displays a notable uplift, providing visual
+affirmation of the intervention's impact.</p></li>
+</ul>
+<h3 id="statistical-analysis"><strong>Statistical
+Analysis:</strong></h3>
+<p>To formally test the effect, we conducted:</p>
+<ul>
+<li><p>A two-sample t-test of donation rates ("gave" variable).</p></li>
+<li><p>A linear probability model (OLS regression): gave ~
+treatment.</p></li>
+</ul>
+<p><strong>Findings:</strong></p>
+<ul>
+<li><p>The t-test yields a statistically significant result, with
+treatment increasing the probability of giving.</p></li>
+<li><p>The regression coefficient is positive and significant,
+quantitatively supporting the same conclusion.<br />
+<img src="media/image6.png"
+style="width:6.26772in;height:4.36111in" /></p></li>
+</ul>
+<p><strong>Interpretation:</strong> These findings underscore the
+behavioral power of framing. Offering a matching grant, even without
+specifying the match size, effectively boosts engagement. Donors likely
+interpret matching as a signal of collective efficacy or organizational
+credibility, prompting greater participation.</p>
+<h3 id="probit-model"><strong>Probit Model:</strong></h3>
+<p>We also estimate a probit regression of gave ~ treatment, mirroring
+the approach in Table 3, Column 1.</p>
+<p><strong>Interpretation:</strong> The probit results confirm that the
+marginal effect of treatment remains positive and significant even under
+a non-linear specification. This reinforces the robustness of the main
+effect and strengthens our confidence in its generalizability.</p>
+<p><img src="media/image2.png"
+style="width:6.26772in;height:2.63889in" /></p>
+<h2 id="effect-of-match-ratio-size"><strong>3. Effect of Match Ratio
+Size</strong></h2>
+<h3 id="pairwise-t-tests"><strong>Pairwise T-tests:</strong></h3>
+<p>We test whether larger match ratios lead to increased giving by
+comparing:</p>
+<ul>
+<li><p>1:1 vs 2:1</p></li>
+<li><p>2:1 vs 3:1</p></li>
+</ul>
+<blockquote>
+<p><img src="media/image7.png"
+style="width:6.19792in;height:2.59104in" /></p>
+</blockquote>
+<p><strong>Findings:</strong></p>
+<ul>
+<li><p>No statistically significant differences in response rates are
+detected between these match conditions.</p></li>
+</ul>
+<h3 id="regression-analysis"><strong>Regression Analysis:</strong></h3>
+<p>We estimate a regression: gave ~ C(ratio) to examine if match ratios
+have a differential effect on giving.</p>
+<p><strong>Findings:</strong></p>
+<ul>
+<li><p>The coefficients on 2:1 and 3:1 matches are not statistically
+different from the baseline 1:1 match.</p></li>
+</ul>
+<p><strong>Interpretation:</strong> This suggests that the marginal
+return on increasing the match ratio is effectively zero. The presence
+of a match appears sufficient to generate psychological salience. Beyond
+that, larger incentives may not enhance perceived value or urgency. This
+is a key behavioral insight that challenges traditional economic models
+of price sensitivity.</p>
+<h3 id="manual-difference-calculations"><strong>Manual Difference
+Calculations:</strong></h3>
+<p>Using group means, we directly computed the differences in donation
+rates:</p>
+<ul>
+<li><p>2:1 vs 1:1: negligible</p></li>
+<li><p>3:1 vs 2:1: negligible</p></li>
+</ul>
+<p><strong>Interpretation:</strong> These values corroborate our
+regression findings. They indicate that once the concept of matching is
+introduced, the specific multiple does not meaningfully alter donor
+behavior. This implies diminishing psychological returns to increasing
+match ratios.</p>
+<h2 id="donation-amounts"><strong>4. Donation Amounts</strong></h2>
+<h3 id="full-sample-regression"><strong>Full Sample
+Regression:</strong></h3>
+<p>We regressed total donation amount on treatment status for the entire
+sample.</p>
+<p><strong>Findings:</strong></p>
+<ul>
+<li><p>The average donation is slightly higher in the treatment group,
+though this difference is modest and varies in statistical
+significance.</p></li>
+</ul>
+<blockquote>
+<p><img src="media/image8.png"
+style="width:6.26772in;height:6.83333in" /></p>
+</blockquote>
+<h3 id="conditional-on-donation"><strong>Conditional on
+Donation:</strong></h3>
+<p>Restricting the sample to individuals who made a donation (gave ==
+1), we re-estimated the regression.</p>
+<p><strong>Findings:</strong></p>
+<ul>
+<li><p>No significant difference in average donation size was
+observed.</p></li>
+</ul>
+<p><strong>Interpretation:</strong> The treatment's effectiveness lies
+primarily in increasing the participation rate rather than altering the
+generosity of existing donors. This insight is crucial for organizations
+aiming to expand their donor base.</p>
+<h3 id="histograms"><strong>Histograms:</strong></h3>
+<p>We plotted donation amounts for donors in treatment and control
+groups.</p>
+<p><img src="media/image1.png"
+style="width:6.26772in;height:2.51389in" /></p>
+<p><strong>Graph Interpretation:</strong></p>
+<ul>
+<li><p>Both distributions are right-skewed, reflecting a typical
+long-tail pattern in giving.</p></li>
+<li><p>The sample means, indicated by vertical lines, are nearly
+identical.</p></li>
+</ul>
+<p><strong>Interpretation:</strong> These plots visually confirm that
+conditional giving behavior remains stable across groups. Behavioral
+change occurs primarily at the extensive margin (whether to give) rather
+than the intensive margin (how much to give).</p>
+<h2 id="section"></h2>
+<h2 id="section-1"></h2>
+<h2 id="section-2"></h2>
+<h2 id="section-3"></h2>
+<h2 id="section-4"></h2>
+<h2 id="simulation-analysis"><strong>5. Simulation
+Analysis</strong></h2>
+<h3 id="law-of-large-numbers-lln"><strong>Law of Large Numbers
+(LLN):</strong></h3>
+<p>We simulated 10,000 draws from control (p = 0.018) and treatment (p =
+0.022) distributions and plotted the cumulative mean difference.</p>
+<p><img src="media/image5.png"
+style="width:6.26772in;height:4.59722in" /></p>
+<p><strong>Graph Interpretation:</strong></p>
+<ul>
+<li><p>The cumulative average converges to the true population
+difference of 0.004.</p></li>
+<li><p>This convergence illustrates the principle that sample means
+become reliable with sufficient data.</p></li>
+</ul>
+<p><strong>Interpretation:</strong> This simulation reinforces the
+trustworthiness of experimental outcomes derived from large samples. The
+LLN ensures that our results are not driven by chance.</p>
+<h3 id="section-5"></h3>
+<h3 id="section-6"></h3>
+<h3 id="central-limit-theorem-clt"><strong>Central Limit Theorem
+(CLT):</strong></h3>
+<p>We simulated distributions of sample mean differences at sizes 50,
+200, 500, and 1000.</p>
+<p><img src="media/image9.png"
+style="width:6.26772in;height:5.02778in" /></p>
+<p><strong>Graph Interpretation:</strong></p>
+<ul>
+<li><p>As the sample size increases, the sampling distribution becomes
+more concentrated and bell-shaped.</p></li>
+<li><p>The distributions center around the expected value (0.004), and
+their variance decreases.</p></li>
+</ul>
+<p><strong>Interpretation:</strong> This exercise demonstrates the CLT
+in action, underscoring the role of sample size in determining
+statistical power and inference reliability. It justifies the paper's
+use of large-scale field experimentation.</p>
+<h2 id="section-7"></h2>
+<h2 id="conclusion"><strong>Conclusion</strong></h2>
+<p>Our replication confirms the main findings of Karlan and List
+(2007):</p>
+<ul>
+<li><p>The presence of a matching grant significantly increases donation
+rates.</p></li>
+<li><p>The size of the match offer has little to no additional
+effect.</p></li>
+<li><p>The treatment primarily affects the extensive margin (whether to
+donate), not the intensive margin (how much to donate).</p></li>
+</ul>
+<p>These results have meaningful implications for fundraising
+strategies. From a behavioral economics perspective, matching offers
+serve more as psychological signals than economic incentives.
+Fundraisers may benefit more from framing and visibility of matching
+rather than adjusting match magnitudes.</p>
+<p>The robustness of these findings, confirmed through both classical
+inference and simulation, highlights the value of well-designed field
+experiments in revealing the underlying drivers of economic
+behavior.</p>
