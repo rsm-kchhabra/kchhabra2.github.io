@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>report2 </title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introduction"
+id="toc-introduction"><strong>Introduction</strong></a></li>
+<li><a href="#part-2-airbnb-case-study"
+id="toc-part-2-airbnb-case-study"><strong>Part 2: Airbnb Case
+Study</strong></a></li>
+<li><a href="#final-thoughts" id="toc-final-thoughts"><strong>Final
+Thoughts</strong></a></li>
+<li><a href="#appendix"
+id="toc-appendix"><strong>Appendix</strong></a></li>
+</ul>
+</nav>
+<p><strong>Understanding Poisson Regression Through Two Case Studies:
+Blueprinty and Airbnb</strong></p>
+<li><a href="Analysis2.html" class="button">Notebook</a></li> 
+<h3 id="introduction"><strong>Introduction</strong></h3>
+<p>Poisson regression is a fundamental tool within the family of
+Generalized Linear Models (GLMs), particularly suited for modeling count
+data where the response variable represents counts that are non-negative
+integers. This model is used extensively across domains including
+healthcare, insurance, marketing analytics, and operations research. In
+this report, we apply Poisson regression to two real-world datasets to
+explore how it can uncover insights about business performance and
+customer behavior.</p>
+<p>We begin with a case study involving a software company, Blueprinty,
+which claims its services help clients obtain more patent approvals. We
+then transition to an analysis of Airbnb listings in New York City,
+where we examine the factors that influence the number of reviews—a
+proxy for popularity or booking frequency. Each case study includes
+exploratory data analysis (EDA), model formulation, interpretation of
+results, and discussion of business implications.</p>
+<p><strong>Part 1: Blueprinty Case Study</strong></p>
+<h4 id="objective"><strong>Objective</strong></h4>
+<p>Blueprinty is a software firm that provides digital tools to help
+engineering firms prepare and submit patent applications. Their
+marketing team believes that customers who use their software are more
+successful at getting patents approved. However, due to the lack of
+pre/post intervention data, our task is to assess whether customers
+differ from non-customers in patent outcomes, after controlling for
+observable firm characteristics. Specifically, we aim to build a Poisson
+regression model to predict the number of patents a firm holds, and test
+whether being a Blueprinty customer significantly predicts higher patent
+counts.</p>
+<h4 id="dataset-overview"><strong>Dataset Overview</strong></h4>
+<p><img src="media/image10.png"
+style="width:5.66667in;height:2.58333in" /></p>
+<p>The dataset consists of 1,500 observations, each representing a firm.
+The key variables include:</p>
+<ul>
+<li><p>patents: Count of patents awarded to each firm (target
+variable)</p></li>
+<li><p>age: Age of the firm in years</p></li>
+<li><p>region: Categorical variable indicating firm location (e.g.,
+Northeast, Midwest, etc.)</p></li>
+<li><p>iscustomer: Binary indicator (1 if the firm is a customer of
+Blueprinty, 0 otherwise)</p></li>
+</ul>
+<p>We hypothesize that iscustomer will have a positive and significant
+coefficient in the Poisson model, after accounting for region and firm
+age.</p>
+<h4 id="methodology"><strong>Methodology</strong></h4>
+<ol type="1">
+<li><p><strong>Exploratory Data Analysis (EDA)</strong></p></li>
+</ol>
+<blockquote>
+<p><img src="media/image11.png"
+style="width:5.65625in;height:4.30208in" /><strong><br />
+</strong></p>
+</blockquote>
+<ul>
+<li><p>We began by plotting histograms of patent counts for customers
+and non-customers. These visualizations revealed that customers tend to
+have a higher number of patents.</p></li>
+<li><p>We also created bar charts of mean patent counts by customer
+status, which showed that Blueprinty customers have approximately 23%
+more patents on average.<br />
+<img src="media/image12.png"
+style="width:6.26772in;height:2.58333in" /></p></li>
+<li><p>Next, we investigated whether customers differ systematically in
+age or region. Boxplots revealed that customers are slightly older, and
+contingency tables showed a higher proportion of customers in the
+Northeast region.<br />
+<img src="media/image13.png"
+style="width:6.26772in;height:4.45833in" /></p></li>
+</ul>
+<blockquote>
+<p><strong>The likelihood function is:</strong></p>
+<p><strong>L(λ; Y₁, Y₂, ..., Yₙ) = Π f(Yᵢ | λ)</strong></p>
+<p><strong>Using the Poisson PMF f(Y | λ) = (e^(-λ) * λ^Y) / Y!, the
+likelihood becomes:</strong></p>
+<p><strong>L(λ; Y₁, Y₂, ..., Yₙ) = Π [(e^(-λ) * λ^(Yᵢ)) /
+Yᵢ!]</strong></p>
+<p><strong>Simplify:</strong></p>
+<p><strong>L(λ; Y₁, Y₂, ..., Yₙ) = e^(-nλ) * λ^(ΣYᵢ) * Π (1 /
+Yᵢ!)</strong></p>
+</blockquote>
+<ol start="2" type="1">
+<li><p><strong>Feature Engineering<br />
+</strong></p>
+<ul>
+<li><p>We created a squared term age_squared to capture possible
+non-linear effects (e.g., diminishing or increasing returns to firm
+experience).</p></li>
+<li><p>We dummy-coded the region variable to use in the model, with one
+region (e.g., Midwest) set as the reference group.</p></li>
+</ul></li>
+<li><p><strong>Modeling<br />
+</strong></p>
+<ul>
+<li><p>We estimated this model using two approaches:</p>
+<ul>
+<li><p>statsmodels.GLM() to fit a Poisson GLM</p></li>
+<li><p>Custom log-likelihood function with scipy.optimize.minimize() to
+validate the MLE numerically</p></li>
+</ul></li>
+</ul></li>
+<li><p><strong>Interpretation of Results</strong></p></li>
+</ol>
+<blockquote>
+<p><img src="media/image14.png"
+style="width:6.26772in;height:5.20833in" /><strong><br />
+</strong></p>
+</blockquote>
+<ul>
+<li><p>The coefficient on iscustomer was 0.242, statistically
+significant (p &lt; 0.001), suggesting that, on average, being a
+customer of Blueprinty increases a firm’s expected number of patents by
+approximately 27%.</p></li>
+<li><p>The age_squared coefficient was negative and significant,
+indicating diminishing returns to age. Younger and mid-age firms saw
+stronger associations with higher patent counts than very old
+firms.</p></li>
+<li><p>Regional dummy variables were not statistically significant,
+suggesting minimal geographic effects after controlling for age and
+customer status.</p></li>
+</ul>
+<ol start="5" type="1">
+<li><p><strong>Conclusion<br />
+</strong></p>
+<ul>
+<li><p>The analysis supports the claim that using Blueprinty is
+positively associated with higher patent counts, even after adjusting
+for firm age and location. However, since the data is observational and
+not randomized, this association should be interpreted with
+caution.</p></li>
+<li><p>MLE for lambda: 3.55000003515202</p></li>
+<li><p><img src="media/image15.png"
+style="width:6.26772in;height:5.31944in" /></p></li>
+</ul></li>
+</ol>
+<p><img src="media/image16.png"
+style="width:6.26772in;height:2.20833in" /></p>
+<h3 id="part-2-airbnb-case-study"><strong>Part 2: Airbnb Case
+Study</strong></h3>
+<h4 id="objective-1"><strong>Objective</strong></h4>
+<p>This case study aims to understand what makes some Airbnb listings in
+New York City receive more reviews than others. We use the number of
+reviews as a proxy for bookings and overall popularity. Our goal is to
+model this count outcome using a Poisson regression framework and
+evaluate which features of a listing (e.g., room type, cleanliness,
+price) are most predictive of review volume.</p>
+<h4 id="dataset-overview-1"><strong>Dataset Overview</strong></h4>
+<p>The dataset includes over 40,000 listings scraped from Airbnb’s
+website. Key variables include:</p>
+<ul>
+<li><p>number_of_reviews: Target variable representing review
+count</p></li>
+<li><p>days: Number of days the listing has been active</p></li>
+<li><p>bathrooms, bedrooms: Numeric features describing the
+unit</p></li>
+<li><p>price: Price per night</p></li>
+<li><p>review_scores_cleanliness, review_scores_location,
+review_scores_value: Ratings on a 1–10 scale</p></li>
+<li><p>room_type: Categorical variable (entire home, private room,
+shared room)</p></li>
+<li><p>instant_bookable: Binary variable (1 if booking does not require
+host approval)</p></li>
+</ul>
+<h4 id="methodology-1"><strong>Methodology</strong></h4>
+<ol type="1">
+<li><p><strong>Data Cleaning and EDA<br />
+</strong></p>
+<ul>
+<li><p>We removed observations with missing values in key review score
+fields to ensure model quality.</p></li>
+<li><p>Room type was encoded using dummy variables. Instant booking was
+converted to binary format.</p></li>
+<li><p>Histograms and bar plots were used to inspect distributions and
+means of review counts by room type, bookability, and price. Listings
+that were instantly bookable and those rated higher in cleanliness
+tended to have more reviews.</p></li>
+</ul></li>
+<li><p><strong>Model Specification<br />
+</strong></p>
+<ul>
+<li><p>All predictors were standardized where appropriate.
+statsmodels.GLM() was used for estimation.</p></li>
+</ul></li>
+<li><p><strong>Key Results</strong></p></li>
+</ol>
+<blockquote>
+<p><img src="media/image17.png"
+style="width:6.26772in;height:5.08333in" /><strong><br />
+</strong></p>
+</blockquote>
+<ul>
+<li><p>instant_bookable: Coefficient of 0.346 (p &lt; 0.001). Listings
+that were instantly bookable received approximately 41% more
+reviews.</p></li>
+<li><p>review_scores_cleanliness: Positive and highly significant,
+indicating cleanliness perception is strongly associated with more
+reviews.</p></li>
+<li><p>room_type: Shared rooms received significantly fewer reviews than
+entire homes, likely reflecting lower demand.</p></li>
+<li><p>price: Had a small negative effect on reviews, suggesting price
+sensitivity.</p></li>
+<li><p>days: A small positive effect, as older listings naturally
+accumulate more reviews over time.</p></li>
+</ul>
+<ol start="4" type="1">
+<li><p><strong>Conclusion<br />
+</strong></p>
+<ul>
+<li><p>The model effectively identifies key drivers of listing
+popularity. Host-controlled factors like cleanliness, booking ease, and
+accurate pricing are shown to significantly affect listing
+performance.</p></li>
+<li><p>This insight can be used by hosts to optimize listing features to
+maximize guest engagement and visibility.</p></li>
+</ul></li>
+</ol>
+<p>(Insert coefficient table and illustrative boxplots of room types vs.
+review counts here)</p>
+<h3 id="final-thoughts"><strong>Final Thoughts</strong></h3>
+<p>Poisson regression proves to be a versatile and interpretable
+approach to modeling count-based outcomes. In both case studies, we
+demonstrate how thoughtful feature engineering and domain knowledge can
+improve model relevance and explanatory power. In the Blueprinty case,
+Poisson regression supported a key business claim. In the Airbnb case,
+it provided actionable insights for host behavior and platform
+design.</p>
+<p>Future work could include testing for overdispersion, comparing
+models (e.g., negative binomial), or incorporating time-series elements.
+Despite its assumptions, Poisson regression remains a critical tool for
+applied analytics and business modeling.</p>
+<h3 id="appendix"><strong>Appendix</strong></h3>
+<ul>
+<li><p><strong>Code and Implementation</strong>: All models and
+visualizations were implemented in Python using pandas, numpy,
+matplotlib, and statsmodels.</p></li>
+<li><p><strong>Custom MLE Functions</strong>: Log-likelihood functions
+were written from scratch to verify GLM outputs and provide
+learning-by-doing experience with numerical optimization.</p></li>
+<li><p><strong>Source File</strong>: The complete annotated analysis can
+be found in the accompanying HTML notebook (Analysis2.html), which
+includes all plots, model output, and code used in this report.</p></li>
+</ul>
+</body>
+</html>
