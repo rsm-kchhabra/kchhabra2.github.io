@@ -1,0 +1,86 @@
+<html><head><style>
+body { font-family: Arial, sans-serif; max-width: 700px; margin: auto; padding: 40px; line-height: 1.6; background-color: #fefefe; color: #333; }
+h1, h2, h3 { text-align: center; }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2em; }
+h3 { font-size: 1.2em; margin-top: 1.5em; }
+p, li { margin-top: 0.5em; }
+ul { padding-left: 20px; }
+</style></head><body>
+<h1>Tuango Deal Analytics: Strategic Insight Report</h1>
+<li><a href="tuango_final.html" class="button">Notebook</a></li> 
+<li><a href="https://github.com/kchhabra-k08E/Tuango" class="button">Git Repo</a></li>
+<h3>Executive Summary and Objective</h3>
+<p>This strategic report presents a data-driven assessment of customer behavior in response to Tuango’s promotional Karaoke deal. By leveraging a test dataset containing demographics, transaction history, and marketing response indicators, we aimed to:</p>
+<p>Quantify the likelihood of a customer purchasing the karaoke deal.</p>
+<p>Estimate the expected quantity of sessions purchased among buyers.</p>
+<p>Compare the profitability and marketing return of a mass-market versus targeted approach.</p>
+<p>Through statistical modeling and profitability simulation, this report delivers targeted business recommendations to enhance campaign efficiency and optimize marketing return.</p>
+<h3>1. Market Conversion Assessment</h3>
+<p>Of the over 418,000 customers in the campaign scope, only 2,020 (0.48%) purchased the karaoke offer. This extremely low conversion rate underscores the difficulty of engaging a broad user base with a single promotion and immediately calls into question the viability of untargeted mass marketing.</p>
+<p>Implications for Tuango:</p>
+<p>Without segmentation, the cost of outreach may outweigh returns.</p>
+<p>This finding justifies the investment in predictive modeling to identify segments with above-average response probabilities.</p>
+<p>Conversion rate acts as a financial benchmark: marketing campaigns must beat this baseline to generate positive ROI.</p>
+<h3>2. Buyer Prediction via Logistic Regression</h3>
+<p>A logistic regression model was employed to identify which user traits predict deal purchase.</p>
+<p>Key Influencers:</p>
+<p>Female Gender: 73% higher odds of purchasing, suggesting messaging tailored to women may improve engagement.</p>
+<p>Music Affinity: Customers with prior music-related purchases were 91% more likely to engage, reinforcing the value of affinity-based targeting.</p>
+<p>Higher Frequency and Spend: Repeat and higher-value purchasers showed increased conversion likelihood.</p>
+<p>Age: Younger customers were more responsive (each additional year reduced likelihood by 1.2%).</p>
+<p>Recency: Surprisingly, recent activity slightly reduced purchase likelihood, possibly due to saturation or irrelevant prior categories.</p>
+<p>Model Performance:</p>
+<p>AUC: 0.657 → modest discriminatory power.</p>
+<p>Pseudo R²: 0.046 → limited explanatory value.</p>
+<p>Consulting Insight: While statistically sound, the model lacks depth for precise targeting. Future iterations should include richer engagement metrics to improve predictive separation.</p>
+<h3>3. Feature Importance Evaluation</h3>
+<p>Permutation-based importance diagnostics revealed the sensitivity of the model to each variable:</p>
+<p>Top Drivers:</p>
+<p>Music, gender, monetary value, and age had the greatest impact on model predictions.</p>
+<p>Marginal Contributors:</p>
+<p>Recency contributed the least to prediction accuracy.</p>
+<p>Business Application: Focus marketing segmentation efforts on music-related engagement and gender-based segmentation. Recency-based strategies should be reevaluated or complemented with context-aware behavioral features.</p>
+<h3>4. Model Calibration and Buyer Identification</h3>
+<p>The logistic model’s predicted average matched the true buying rate (9.66%), indicating proper calibration. However, overlap between predicted probabilities for buyers and non-buyers indicates weak classification at the individual level.</p>
+<p>Recommendation: While aggregate predictions are reliable, segmentation using strict probability thresholds may still yield a high false positive rate. Refinement is necessary before deploying model-driven exclusion rules.</p>
+<h3>5. Session Quantity Estimation via Linear Regression</h3>
+<p>A linear regression model estimated the number of sessions purchased by buyers:</p>
+<p>Key Findings:</p>
+<p>Positive Predictors: Being female (+0.179 sessions) and prior music engagement (+0.194 sessions).</p>
+<p>Spending and Frequency: Also correlated positively, albeit with small magnitudes.</p>
+<p>Negative Predictor: Age (-0.004 sessions per year).</p>
+<p>Model Performance:</p>
+<p>R² = 0.029 → explains only 2.9% of variation.</p>
+<p>Strategic Assessment: Though informative, this model lacks actionable precision. Non-observed behavioral factors (e.g., intended use, peer influence, or time-sensitive motivation) likely dominate session volume outcomes.</p>
+<h3>6. Profitability and Marketing ROI Scenarios</h3>
+<p>Two strategic messaging approaches were simulated:</p>
+<p>Baseline Assumptions:</p>
+<p>Unit Price: 49 RMB</p>
+<p>Unit Cost: 0 (gross margin = 50%)</p>
+<p>Cost per Push Message: 9 RMB</p>
+<p>Average Quantity: 3.94 sessions</p>
+<p>Response Rate: 9.66% (from model predictions)</p>
+<p>A. Mass Messaging (All Customers)</p>
+<p>Messages Sent: 397,252</p>
+<p>Projected Responses: ~38,383</p>
+<p>Profit: ~753,000 RMB</p>
+<p>ROME = 1.036 → campaign is marginally profitable】</p>
+<p>B. Predictive Targeting (Only High-Scoring Customers)</p>
+<p>Customers Above Breakeven Cutoff: 174,126</p>
+<p>Projected Responses: ~16,821</p>
+<p>Profit: ~334,000 RMB</p>
+<p>ROME = 0.085 → Not financially viable</p>
+<p>Strategic Takeaway:</p>
+<p>The targeted strategy failed to outperform mass outreach because the model lacked sufficient precision at the top end. Without clear lift among highest-probability segments, reach becomes more valuable than selectivity.</p>
+<p>Visuals (Pages 15–16): Confirm higher ROI from mass marketing versus targeting under current model accuracy.</p>
+<h3>7. Actionable Business Recommendations</h3>
+<p>Refine Predictive Model Before Deployment: Current model lacks sharpness; refine with session timing, channel interaction, or personalization features.</p>
+<p>Incorporate Hybrid Segmentation: Combine basic filters (e.g., music affinity, female gender) with model scores for better ROI balance.</p>
+<p>Test Behavioral Triggers: Investigate timing windows, campaign framing, and deal positioning that maximize perceived value.</p>
+<p>Pilot A/B Variants: Explore gender-specific or music-themed message copy for stronger emotional resonance.</p>
+<p>Track Profit at Subgroup Level: Run simulations for 10%, 20%, 30% top segments to determine optimal probability threshold.</p>
+<h3>Closing Recommendation</h3>
+<p>While Tuango’s karaoke campaign is modestly profitable at scale, its strategic potential lies in its ability to become significantly more efficient through targeted communication. However, the current model’s ability to separate likely buyers from non-buyers remains underdeveloped. We recommend investing in behavioral feature engineering and deploying controlled experiments to further validate and refine the targeting strategy.</p>
+<p>Until then, a hybrid approach—broad outreach with messaging tailored by simple rules—can balance scale and specificity while minimizing waste.</p>
+</body></html>
